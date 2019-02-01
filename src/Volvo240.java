@@ -12,14 +12,10 @@ public class Volvo240 extends Car implements Movable{
         modelName = "Volvo240";
         stopEngine();
     }
-    
 
-    
     public double speedFactor(){
         return enginePower * 0.01 * trimFactor;
     }
-
-
 
     public void incrementSpeed(double amount){
         // Sätter Hastigheten till Minsta värdet ifrån x -> 100
