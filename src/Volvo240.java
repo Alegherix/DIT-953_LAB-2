@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Volvo240 extends Car{
+public class Volvo240 extends Car implements Movable{
 
     public static final double trimFactor = 1.25;
 
@@ -27,19 +27,19 @@ public class Volvo240 extends Car{
 	    currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
     }
 
-    public void decrementSpeed(double amount){
-        //Sänker hastigheten till Max värdet av x -> 0
-        //Dvs vi kan ej gå under 0
-        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
+
+    @Override
+    public void move() {
+
     }
 
-    // TODO fix this method according to lab pm
-    public void gas(double amount){
-        incrementSpeed(amount);
+    @Override
+    public void turnLeft() {
+
     }
 
-    // TODO fix this method according to lab pm
-    public void brake(double amount){
-        decrementSpeed(amount);
+    @Override
+    public void turnRight() {
+
     }
 }

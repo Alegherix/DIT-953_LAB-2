@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Saab95 extends Car{
+public class Saab95 extends Car implements Movable{
 
     public boolean turboOn;
 
@@ -37,21 +37,23 @@ public class Saab95 extends Car{
     }
 
 
+    //Saknar någon form av CAP
     public void incrementSpeed(double amount){
         currentSpeed = getCurrentSpeed() + speedFactor() * amount;
     }
 
-    public void decrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() - speedFactor() * amount;
+    @Override
+    public void move() {
+
     }
 
-    // TODO fix this method according to lab pm
-    public void gas(double amount){
-        incrementSpeed(amount);
+    @Override
+    public void turnLeft() {
+
     }
 
-    // TODO fix this method according to lab pm
-    public void brake(double amount){
-        decrementSpeed(amount);
+    @Override
+    public void turnRight() {
+
     }
 }
