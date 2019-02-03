@@ -34,14 +34,24 @@ public abstract class Car implements Movable{
         return color;
     }
 
+    /**
+     * Sets the Color of the car
+     * @param clr Color to set car to
+     */
     public void setColor(Color clr){
         color = clr;
     }
 
+    /**
+     * Starts the engine of the car
+     */
     public void startEngine(){
         currentSpeed = 0.1;
     }
 
+    /**
+     * Kills the engine of the car
+     */
     public void stopEngine(){
         currentSpeed = 0;
     }
