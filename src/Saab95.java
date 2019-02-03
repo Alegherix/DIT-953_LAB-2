@@ -13,10 +13,6 @@ public class Saab95 extends Car implements Movable{
         stopEngine();
     }
 
-    /**
-     * Turbo är enbart relaterat till SAAB'n
-     */
-
     public void setTurboOn(){
 	    turboOn = true;
     }
@@ -25,10 +21,6 @@ public class Saab95 extends Car implements Movable{
 	    turboOn = false;
     }
 
-    /**
-     *
-     * @return
-     */
 
     public double speedFactor(){
         double turbo = 1;
@@ -36,24 +28,4 @@ public class Saab95 extends Car implements Movable{
         return enginePower * 0.01 * turbo;
     }
 
-
-    //Saknar någon form av CAP
-    public void incrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() + speedFactor() * amount;
-    }
-
-    @Override
-    public void move() {
-
-    }
-
-    @Override
-    public void turnLeft() {
-
-    }
-
-    @Override
-    public void turnRight() {
-
-    }
 }

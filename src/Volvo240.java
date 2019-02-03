@@ -17,25 +17,5 @@ public class Volvo240 extends Car implements Movable{
         return enginePower * 0.01 * trimFactor;
     }
 
-    public void incrementSpeed(double amount){
-        // Sätter Hastigheten till Minsta värdet ifrån x -> 100
-        // Dvs vi kan ej gå över 100
-	    currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
-    }
 
-
-    @Override
-    public void move() {
-
-    }
-
-    @Override
-    public void turnLeft() {
-
-    }
-
-    @Override
-    public void turnRight() {
-
-    }
 }
