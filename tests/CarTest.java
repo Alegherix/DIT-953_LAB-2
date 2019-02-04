@@ -12,6 +12,7 @@ public class CarTest {
         assertEquals(2, testSaab.getNrDoors());
     }
 
+    @Test
     public void maxSpeedVolvo(){
         Car testVolvo = new Volvo240();
         for(int i =0; i<= testVolvo.getEnginePower(); i++){
@@ -20,6 +21,7 @@ public class CarTest {
         assertEquals(testVolvo.getCurrentSpeed(), testVolvo.getEnginePower(), 0);
     }
 
+    @Test
     public void maxSpeedSaab(){
         Car testSaab = new Saab95();
         for (int i = 0; i < testSaab.getEnginePower(); i++) {
@@ -28,5 +30,17 @@ public class CarTest {
         assertEquals(testSaab.enginePower, testSaab.getEnginePower(), 0);
     }
 
+
+
+    @Test
+    public void testBrakes(){
+        Car testVolvo = new Volvo240();
+        int testSpeed = 50;
+        testVolvo.currentSpeed = testSpeed;
+        for (int i = 0; i <= testSpeed; i++) {
+            testVolvo.brake(1);
+        }
+        assertEquals(0, testVolvo.getCurrentSpeed(),0);
+    }
 
 }

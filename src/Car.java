@@ -82,7 +82,6 @@ public abstract class Car implements Movable{
      * @return Wheter the value is in valid range
      */
     private boolean acceptedValueRange(double amount){
-        //return (amount<=1.0 && amount>=0.0)? true : throw new IllegalArgumentException("");
         if(amount <= 1.0 && amount >= 0.0){
             return true;
         }
