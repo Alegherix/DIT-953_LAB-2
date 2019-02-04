@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static org.junit.Assert.*;
@@ -61,4 +63,15 @@ public class CarTest {
         testCar.move();
         assertEquals(randomNumber, testCar.getPosition().getY(),0);
     }
+
+    @Test
+    public void testCarLeftTurnDirection(){
+        Car testCar = new Volvo240();
+        List<Direction> directionList = Arrays.asList(Direction.EAST, Direction.NORTH, Direction.WEST, Direction.SOUTH);
+        for (int i = 0; i < directionList.size(); i++) {
+            testCar.turnLeft();
+            assertTrue(directionList.get(i).equals(testCar.getDirection()));
+        }
+    }
+
 }

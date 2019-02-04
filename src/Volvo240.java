@@ -13,6 +13,10 @@ public class Volvo240 extends Car implements Movable{
         stopEngine();
     }
 
+    /**
+     * Returns the speed factor of the Volvo240
+     * @return the speed factor
+     */
     public double speedFactor(){
         return enginePower * 0.01 * trimFactor;
     }

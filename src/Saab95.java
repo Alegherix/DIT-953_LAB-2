@@ -13,15 +13,25 @@ public class Saab95 extends Car implements Movable{
         stopEngine();
     }
 
+    /**
+     * Sets the turbo of the car to on
+     */
     public void setTurboOn(){
 	    turboOn = true;
     }
 
+    /**
+     * Sets the turbo of the car off.
+     */
     public void setTurboOff(){
 	    turboOn = false;
     }
 
 
+    /**
+     * Returns the speed factor of the Saab95
+     * @return the speed factor
+     */
     public double speedFactor(){
         double turbo = 1;
         if(turboOn) turbo = 1.3;
