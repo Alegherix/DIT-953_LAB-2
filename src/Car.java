@@ -19,16 +19,52 @@ public abstract class Car implements Movable{
         position = new Position();
     }
 
+    /**
+     * Returns the direction of the Car
+     * @return the direction
+     */
+    public Direction getDirection() {
+        return direction;
+    }
+
+    /**
+     * Returns the Position of the car
+     * @return the position
+     */
+    public Position getPosition() {
+        return position;
+    }
+
+    /**
+     * Returns the number of doors of the car
+     * @return the number of doors
+     */
+
     public int getNrDoors(){
         return nrDoors;
     }
+
+    /**
+     * Returns the engine power of the car
+     * @return the engine power
+     */
     public double getEnginePower(){
         return enginePower;
     }
 
+    /**
+     * Returns the current speed of the car
+     * @return the current speed
+     */
+
     public double getCurrentSpeed(){
         return currentSpeed;
     }
+
+    /**
+     * Returns the color of the car
+     * @return the color of the car
+     */
 
     public Color getColor(){
         return color;

@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import static org.junit.Assert.*;
 
 public class CarTest {
@@ -31,16 +33,32 @@ public class CarTest {
     }
 
 
-
     @Test
-    public void testBrakes(){
+    public void testBrakesDoesntGoBelowZero(){
         Car testVolvo = new Volvo240();
         int testSpeed = 50;
         testVolvo.currentSpeed = testSpeed;
-        for (int i = 0; i <= testSpeed; i++) {
+        for (int i = 0; i <= testSpeed+1; i++) {
             testVolvo.brake(1);
         }
         assertEquals(0, testVolvo.getCurrentSpeed(),0);
     }
 
+    @Test
+    public void testBrakeLowersSpeed(){
+        Car testVolvo = new Volvo240();
+        int testSpeed = 50;
+        testVolvo.currentSpeed = testSpeed;
+        testVolvo.brake(1);
+        assertTrue(testSpeed>testVolvo.getCurrentSpeed());
+    }
+
+    @Test
+    public void testCarMovement(){
+        Car testCar = new Saab95();
+        int randomNumber = ThreadLocalRandom.current().nextInt();
+        testCar.currentSpeed = randomNumber;
+        testCar.move();
+        assertEquals(randomNumber, testCar.getPosition().getY(),0);
+    }
 }
