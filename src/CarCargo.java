@@ -6,24 +6,30 @@ public class CarCargo {
 
     private CargoPlacement cargoPlacement;
     Stack<Car> cars;
+    Scania scania;
 
-
-    public CarCargo() {
+    public CarCargo(Scania scania) {
+        this.scania = scania;
         cargoPlacement = CargoPlacement.DOWN;
         cars = new Stack<>();
     }
 
+    /**
+     * Decides that the placement of the Cargo
+     */
     enum CargoPlacement{
         UP, DOWN
     }
 
-    public CargoPlacement getCargoPlacement() {
-        return cargoPlacement;
+    /**
+     * Decides if the Ramp is allowed to be down
+     * @return
+     */
+    boolean isAllowedToBeDown(){
+        return scania.getEngine().getCurrentSpeed()<=0;
     }
 
-    public Stack<Car> getCars() {
-        return cars;
-    }
+
 
     boolean tiltable(SemiTruck semiTruck){
         return semiTruck.getEngine().getCurrentSpeed()<=0;
@@ -50,6 +56,14 @@ public class CarCargo {
         for(Car car : cars){
             car.setPosition(position);
         }
+    }
+
+    public CargoPlacement getCargoPlacement() {
+        return cargoPlacement;
+    }
+
+    public Stack<Car> getCars() {
+        return cars;
     }
 
 }
