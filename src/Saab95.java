@@ -1,16 +1,18 @@
 import java.awt.*;
 
-public class Saab95 extends Car implements Movable{
+public class Saab95 extends Vehicle implements ICar{
 
     public boolean turboOn;
 
+
     public Saab95(){
-        nrDoors = 2;
-        color = Color.red;
-        enginePower = 125;
-	    turboOn = false;
-        modelName = "Saab95";
-        stopEngine();
+        this(Color.black);
+    }
+
+    public Saab95(Color color){
+        super(new Body(color, 2), new Engine(125),"Saab95");
+        turboOn = false;
+        getEngine().stopEngine();
     }
 
     /**
@@ -35,7 +37,11 @@ public class Saab95 extends Car implements Movable{
     public double speedFactor(){
         double turbo = 1;
         if(turboOn) turbo = 1.3;
-        return enginePower * 0.01 * turbo;
+        return getEngine().enginePower * 0.01 * turbo;
     }
 
+    @Override
+    public Color getColor() {
+        return getBody().getColor();
+    }
 }
