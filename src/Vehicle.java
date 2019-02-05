@@ -8,13 +8,6 @@ public abstract class Vehicle implements Movable {
     private Direction direction;
     private String modelName;
 
-    public Body getBody() {
-        return body;
-    }
-
-    public Engine getEngine() {
-        return engine;
-    }
 
     public Vehicle(){
         this("");
@@ -32,6 +25,17 @@ public abstract class Vehicle implements Movable {
         direction = Direction.SOUTH;
     }
 
+
+
+    public Body getBody() {
+        return body;
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+
+
     /**
      * Returns the direction of the Car
      * @return the direction
@@ -46,6 +50,10 @@ public abstract class Vehicle implements Movable {
      */
     public Position getPosition() {
         return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     private void incrementSpeed(double amount){

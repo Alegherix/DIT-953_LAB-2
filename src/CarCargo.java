@@ -5,7 +5,7 @@ import java.util.Stack;
 public class CarCargo {
 
     private CargoPlacement cargoPlacement;
-    Stack<ICar> cars;
+    Stack<Car> cars;
 
 
     public CarCargo() {
@@ -21,7 +21,7 @@ public class CarCargo {
         return cargoPlacement;
     }
 
-    public Stack<ICar> getCars() {
+    public Stack<Car> getCars() {
         return cars;
     }
 
@@ -42,9 +42,13 @@ public class CarCargo {
         cars.pop();
     }
 
+    /**
+     * Used to update the cargo position, to that of the carrying truck
+     * @param position to update to
+     */
     public void updateCargoPosition(Position position){
-        for(ICar car : cars){
-
+        for(Car car : cars){
+            car.setPosition(position);
         }
     }
 

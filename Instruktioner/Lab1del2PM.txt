@@ -57,9 +57,9 @@ Följande förhållanden ska gälla:
   biltransporten.
 - Bilar kan endast lossas i omvänd ordning från hur de lastades, dvs den sista
   bilen som lastades måste vara först att lossas (first-in-last-out).
-- Biltransporten ska inte kunna lasta på sig själv.
+- Biltransporten ska inte kunna lasta på sig själv.                     -> STACK
 - Under det att en bil är lastad på biltransporten ska dess position i världen 
-  alltid vara densamma som biltransportens position. 
+  alltid vara densamma som biltransportens position.                    ->
 
 
 Viktiga saker att ha i åtanke under den här uppgiften:

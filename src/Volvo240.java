@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Volvo240 extends Vehicle implements ICar{
+public class Volvo240 extends Car{
 
     public static final double trimFactor = 1.25;
 
@@ -23,8 +23,4 @@ public class Volvo240 extends Vehicle implements ICar{
         return getEngine().getEnginePower() * 0.01 * trimFactor;
     }
 
-    @Override
-    public Color getColor() {
-        return getBody().getColor();
-    }
 }

@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Saab95 extends Vehicle implements ICar{
+public class Saab95 extends Car{
 
     public boolean turboOn;
 
@@ -40,8 +40,4 @@ public class Saab95 extends Vehicle implements ICar{
         return getEngine().enginePower * 0.01 * turbo;
     }
 
-    @Override
-    public Color getColor() {
-        return getBody().getColor();
-    }
 }
