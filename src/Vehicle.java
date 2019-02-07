@@ -7,25 +7,26 @@ public abstract class Vehicle implements Movable {
     private Position position;
     private Direction direction;
     private String modelName;
+    private Type type;
+
+    enum Type{
+        CAR, TRUCK
+    }
+
 
 
     public Vehicle(){
-        this("");
+        this(new Body(Color.black,4), new Engine(100), new Position(), Direction.SOUTH, "", Type.CAR);
     }
 
-    public Vehicle(String modelName){
-        this(new Body(Color.black, 4), new Engine(100), modelName);
-    }
-
-    public Vehicle(Body body, Engine engine, String modelName) {
+    public Vehicle(Body body, Engine engine, Position position, Direction direction, String modelName, Type type) {
         this.body = body;
         this.engine = engine;
+        this.position = position;
+        this.direction = direction;
         this.modelName = modelName;
-        position = new Position();
-        direction = Direction.SOUTH;
+        this.type = type;
     }
-
-
 
     public Body getBody() {
         return body;
@@ -35,6 +36,9 @@ public abstract class Vehicle implements Movable {
         return engine;
     }
 
+    public Type getType() {
+        return type;
+    }
 
     /**
      * Returns the direction of the Car
@@ -56,8 +60,8 @@ public abstract class Vehicle implements Movable {
         this.position = position;
     }
 
-    private void incrementSpeed(double amount){
-        engine.setCurrentSpeed(Math.min(engine.getCurrentSpeed() + speedFactor() * amount, engine.enginePower));
+    protected void incrementSpeed(double amount){
+        engine.setCurrentSpeed(Math.min(engine.getCurrentSpeed() + speedFactor() * amount, engine. enginePower));
     }
 
     /**
@@ -69,11 +73,11 @@ public abstract class Vehicle implements Movable {
         engine.setCurrentSpeed(Math.max(engine.getCurrentSpeed() - speedFactor() * amount, 0));
     }
 
-    public double speedFactor(){
-        return 0;
+    public double speedFactor() {
+        return getEngine().getEnginePower() * 0.01 * 1;
     }
 
-    private boolean acceptedValueRange(double amount){
+    protected boolean acceptedValueRange(double amount){
         if(amount <= 1.0 && amount >= 0.0){
             return true;
         }
@@ -101,6 +105,10 @@ public abstract class Vehicle implements Movable {
         if(acceptedValueRange(amount)){
             decrementSpeed(Math.abs(amount));
         }
+    }
+
+    protected boolean isMoving(){
+        return getEngine().getCurrentSpeed()>0;
     }
 
     /**

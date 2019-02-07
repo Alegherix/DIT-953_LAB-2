@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class CarTest {
 
-
+/*
     @Test
     public void getNrDoors() {
         Vehicle testVolvo = new Volvo240();
@@ -86,7 +86,7 @@ public class CarTest {
             assertTrue(directionList.get(i).equals(testCar.getDirection()));
         }
     }
-
+/*
     @Test
     public void testFILO(){
         CarCargo carCargo = new CarCargo();
@@ -95,6 +95,51 @@ public class CarTest {
         carCargo.cars.push(new Saab95(Color.YELLOW));
         System.out.println(carCargo.cars.pop().getColor());
     }
+*/
 
 
+    @Test
+    public void testScaniaColor(){
+        Scania scania = new Scania(Color.CYAN);
+        assertTrue(scania.getBody().getColor().equals(Color.CYAN));
+    }
+
+    @Test
+    public void raiseCargoWhileDriving(){
+        Scania scania = new Scania();
+        scania.getEngine().startEngine();
+        scania.gas(1);
+        scania.raiseCargo(50);
+        //scania.gas(1);
+        //System.out.println(scania.getEngine().getCurrentSpeed());
+    }
+
+    @Test
+    public void lowerCargoWhileDriving(){
+        Scania scania = new Scania();
+        scania.getEngine().startEngine();
+        scania.lowerCargo(20);
+    }
+
+    @Test
+    public void maximumCargoAngle(){
+        Scania scania = new Scania();
+        scania.raiseCargo(150);
+        assertEquals(RegularCargo.UPPER_LIMIT, scania.getCargo().getCurrentAngle(),0);
+    }
+
+    @Test
+    public void minimumCargoAngle(){
+        Scania scania = new Scania();
+        scania.lowerCargo(50);
+        assertEquals(RegularCargo.LOWER_LIMIT, scania.getCargo().getCurrentAngle(),0);
+    }
+
+    @Test
+    public void engineTest(){
+        Saab95 saab95 = new Saab95();
+        saab95.gas(1);
+        System.out.println(saab95.getEngine().getCurrentSpeed());
+
+    }
 }
