@@ -1,10 +1,75 @@
+import java.awt.*;
+
 public class SemiTruck extends Vehicle {
 
 
     private CarCargo cargo;
 
-    public boolean canLoadCarCargo(){
-        return !isMoving() && cargo.getCars().size() <= cargo.LIMIT;
+    public SemiTruck(){
+        this(Color.red);
+    }
+
+
+    public SemiTruck(Color color){
+        super(new Body(color, 2),
+                new Engine(450),
+                new Position(),
+                Direction.SOUTH,
+                "Volvo",
+                Type.TRUCK
+        );
+        cargo = new CarCargo();
+        getEngine().stopEngine();
+    }
+
+    private boolean canLoadCargo(Vehicle vehicle){
+        return withinValidLoadingRange(vehicle) &&
+                cargo.loadable(vehicle);
+    }
+
+    // Kan behöva fixas
+    private boolean withinValidLoadingRange(Vehicle vehicle){
+        if(Math.abs(vehicle.getPosition().getX() - getPosition().getX())<=2 &&
+            Math.abs(vehicle.getPosition().getY() - getPosition().getY())<=2){
+            return true;
+        }
+        else{
+            throw new IllegalArgumentException("The car your trying to load is without of range for loading");
+        }
+    }
+
+    /**
+     * Unloads the car from the cargo and updates it's position accordingly
+     * @return Car that is unloaded
+     */
+    public Vehicle unloadCargo(){
+        if(cargo.stateIsDown()){
+            Vehicle vehicle = cargo.unload();
+            vehicle.setPosition(decideCargoPositionWhenUnloading());
+            return vehicle;
+        }
+        else{
+            throw new IllegalStateException("You need to lower the cargo before trying to unload!");
+        }
+    }
+
+    public void loadCargo(Vehicle vehicle){
+        if(canLoadCargo(vehicle)){
+            cargo.load(vehicle);
+        }
+    }
+
+    public void lowerCargo(){
+        if(!isMoving()){
+            cargo.lower();
+        }
+        else{
+            throw new IllegalStateException("You need to stop moving before trying to lower the cargo");
+        }
+    }
+
+    public void raiseCargo(){
+        cargo.raise();
     }
 
     /**
@@ -12,8 +77,13 @@ public class SemiTruck extends Vehicle {
      */
     @Override
     public void move() {
-        super.move();
-        cargo.updateCargoPosition(getPosition());
+        if(cargo.stateIsDown()){
+            throw new IllegalStateException("You need to raise the cargo before driving");
+        }
+        else{
+            super.move();
+            cargo.updateCargoPosition(getPosition());
+        }
     }
 
     /**

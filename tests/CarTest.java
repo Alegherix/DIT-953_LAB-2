@@ -140,6 +140,47 @@ public class CarTest {
         Saab95 saab95 = new Saab95();
         saab95.gas(1);
         System.out.println(saab95.getEngine().getCurrentSpeed());
+    }
 
+    @Test
+    public void loadTruckOntoTruck(){
+        SemiTruck semiTruck = new SemiTruck();
+        semiTruck.loadCargo(semiTruck);
+    }
+
+    @Test
+    public void drivingWithCargoDown(){
+        SemiTruck semiTruck = new SemiTruck();
+        semiTruck.lowerCargo();
+        semiTruck.getEngine().startEngine();
+        semiTruck.move();
+    }
+
+    @Test
+    public void tryingToLowerCargoWhileDriving(){
+        SemiTruck semiTruck = new SemiTruck();
+        semiTruck.getEngine().startEngine();
+        semiTruck.gas(1);
+        semiTruck.lowerCargo();
+    }
+
+    @Test
+    public void tryingToLoadCarOutOfRange(){
+        Saab95 saab95 = new Saab95();
+        saab95.gas(1);
+        for (int i = 0; i < 5; i++) {
+            saab95.move();
+        }
+        System.out.println(saab95.getPosition());
+
+        SemiTruck semiTruck = new SemiTruck();
+        semiTruck.gas(1);
+        for (int i = 0; i < 2; i++) {
+            semiTruck.move();
+        }
+        System.out.println(semiTruck.getPosition());
+        semiTruck.getEngine().stopEngine();
+        semiTruck.lowerCargo();
+        semiTruck.loadCargo(saab95);
     }
 }

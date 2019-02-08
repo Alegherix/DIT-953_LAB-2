@@ -8,7 +8,7 @@ public class RegularCargo implements ICargo{
         currentAngle = LOWER_LIMIT;
     }
 
-    @Override
+
     public void lower(double amount) {
         if(currentAngle - amount <=0){
             currentAngle = 0;
@@ -18,7 +18,7 @@ public class RegularCargo implements ICargo{
         }
     }
 
-    @Override
+
     public void raise(double amount) {
         if(amount + currentAngle >=70){
             currentAngle = 70;
@@ -26,6 +26,17 @@ public class RegularCargo implements ICargo{
         else{
             currentAngle += amount;
         }
+    }
+
+    @Override
+    public void lower(){
+        currentAngle = 0;
+    }
+
+
+    @Override
+    public void raise() {
+        currentAngle = 70;
     }
 
     public double getCurrentAngle() {

@@ -49,17 +49,18 @@ antal bilar som den kan lasta. Bilar som ska lastas på biltransporten får inte
 vara för stora (gör ett eget antagande).
 
 Följande förhållanden ska gälla:
-- Biltransportens ramp har endast två lägen, uppe eller nere.   -> Enum
+- Biltransportens ramp har endast två lägen, uppe eller nere.   -> CHECK
 - Rampen kan endast vara nere om biltransporten står stilla.    ->
+    Lös -> Kan ej röra sig om rampen är nere
 - Bilar kan endast lastas om rampen är nere, och de befinner sig rimligt nära 
   biltransporten (gör ett eget antagande, de exakta detaljerna är inte viktiga).
 - Bilar kan endast lossas om rampen är nere. De bör då hamna rimligt nära 
-  biltransporten.
+  biltransporten.                                                       -> Check
 - Bilar kan endast lossas i omvänd ordning från hur de lastades, dvs den sista
-  bilen som lastades måste vara först att lossas (first-in-last-out). -> STACK
-- Biltransporten ska inte kunna lasta på sig själv.                   -> IllegalArgument
+  bilen som lastades måste vara först att lossas (first-in-last-out). -> CHECK
+- Biltransporten ska inte kunna lasta på sig själv.                   -> CHECK
 - Under det att en bil är lastad på biltransporten ska dess position i världen 
-  alltid vara densamma som biltransportens position.                    ->
+  alltid vara densamma som biltransportens position.                    -> CHECK
 
 
 Viktiga saker att ha i åtanke under den här uppgiften:

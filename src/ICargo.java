@@ -1,7 +1,7 @@
 public interface ICargo {
 
-    void lower(double amount);
+    void lower();
 
-    void raise(double amount);
+    void raise();
 
 }

@@ -1,7 +1,7 @@
 import java.util.Stack;
 
 
-public class CarCargo {
+public class CarCargo implements ICargo{
 
     enum CargoState{
         UP, DOWN
@@ -10,12 +10,10 @@ public class CarCargo {
     public final int LIMIT = 10;
     private Stack<Vehicle> cars;
     private CargoState cargoState;
-    private Position position;
 
     public CarCargo() {
         cars = new Stack<>();
         cargoState = CargoState.UP;
-        position = new Position();
     }
 
     public void updateCargoPosition(Position position){
@@ -24,26 +22,62 @@ public class CarCargo {
         }
     }
 
-
-    public Vehicle unloadCargo(){
-        return (canBeUnloaded())? cars.pop() : null;
+    public Vehicle unload(){
+        return cars.pop();
     }
 
-    public void loadCarOntoCargo(Vehicle vehicle){
-        if(vehicle.getType().equals(Vehicle.Type.TRUCK)){
-            throw new IllegalArgumentException("You can only load cars onto this cargo");
+    public void load(Vehicle vehicle){
+       cars.push(vehicle);
+    }
+
+    public boolean loadable(Vehicle vehicle){
+        return withinRange() && loadingProperly(vehicle) && shouldBeDown()  ;
+    }
+
+
+    public boolean withinRange(){
+        if(cars.size() < LIMIT){
+            return true;
         }
         else{
-            cars.push(vehicle);
+            throw new IllegalStateException("The cargo is already fully stacked");
         }
     }
 
-    public boolean canBeUnloaded(){
+    public boolean loadingProperly(Vehicle vehicle){
+        if(vehicle.getType().equals(Vehicle.Type.CAR)){
+            return true;
+        }
+        else{
+            throw new IllegalArgumentException("You can only load cars onto this Cargo");
+        }
+    }
+
+    public boolean shouldBeDown(){
+        if(!stateIsDown()){
+            throw new IllegalStateException("You need to lower the cargo before trying to load");
+        }
+        else{
+            return true;
+        }
+    }
+
+    public boolean stateIsDown(){
         return cargoState.equals(CargoState.DOWN);
     }
 
     public Stack<Vehicle> getCars() {
         return cars;
+    }
+
+    @Override
+    public void lower() {
+        cargoState = CargoState.DOWN;
+    }
+
+    @Override
+    public void raise() {
+        cargoState = CargoState.UP;
     }
 
 }
